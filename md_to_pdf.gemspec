@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.platform = Gem::Platform::RUBY
   s.require_paths = ['lib']
-  s.required_ruby_version = '>= 3.4.0'
+  s.required_ruby_version = '>= 3.3.0'
 
   s.add_dependency "base64", ["~> 0.2"]
   s.add_dependency "bigdecimal", ["~> 3.1"]
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency "json-schema", ["~> 4.3"]
   s.add_dependency "markly", ["~> 0.10"]
   s.add_dependency "matrix", ["~> 0.4"]
-  s.add_dependency "nokogiri", ["~> 1.18"]
+  s.add_dependency "nokogiri", ["~> 1.17"]
   s.add_dependency "prawn", ["~> 2.4"]
   s.add_dependency "prawn-table", ["~> 0.2"]
   s.add_dependency "text-hyphen", ["~> 1.5"]
