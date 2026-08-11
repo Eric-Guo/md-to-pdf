@@ -62,6 +62,36 @@ describe MarkdownToPDF::Table do
                  { x: 415.67, y: 730.884, text: "differently" }])
   end
 
+  it 'removes edge padding in borderless tables' do
+    generator.parse_file('table/borderless_padding.md', { table: { cell: { padding: 10, no_border: true } } })
+    expect_pdf([
+                 { x: 36.0, y: 747.384, text: "A table" },
+                 { x: 36.0, y: 720.884, text: "A" },
+                 { x: 316.0, y: 720.884, text: "B" },
+                 { x: 36.0, y: 687.012, text: "C" },
+                 { x: 316.0, y: 687.012, text: "D" }])
+  end
+
+  it 'removes left padding when a table edge has no border left' do
+    generator.parse_file('table/borderless_padding.md', { table: { cell: { padding: 10, no_border_left: true } } })
+    expect_pdf([
+                 { x: 36.0, y: 747.384, text: "A table" },
+                 { x: 36.0, y: 720.884, text: "A" },
+                 { x: 316.0, y: 720.884, text: "B" },
+                 { x: 36.0, y: 687.012, text: "C" },
+                 { x: 316.0, y: 687.012, text: "D" }])
+  end
+
+  it 'keeps edge padding when html border is manually set' do
+    generator.parse_file('table/html_manual_borders.html', { html_table: { cell: { no_border: true } } })
+    expect_pdf([
+                  { x: 36.0, y: 747.384, text: "A table" },
+                  { x: 36.0, y: 730.884, text: "A" },
+                  { x: 306.0, y: 730.884, text: "B" },
+                  { x: 36.0, y: 717.012, text: "C" },
+                  { x: 306.0, y: 717.012, text: "D" }])
+  end
+
   it 'creates a table with column align' do
     generator.parse_file('table/alignment.md')
     expect_pdf([

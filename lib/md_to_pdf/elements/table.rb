@@ -169,7 +169,24 @@ module MarkdownToPDF
           end
         end
         apply_prawn_table_outer_borders(prawn_table, table_opts) if table_opts && !table_opts.empty?
+        adjust_edge_paddings(prawn_table)
       end
+    end
+
+    def adjust_edge_paddings(prawn_table)
+      prawn_table.cells.columns(0).each do |cell|
+        cell.padding_left = 0 if no_visible_border?(cell, :left)
+      end
+      prawn_table.cells.columns(-1).each do |cell|
+        cell.padding_right = 0 if no_visible_border?(cell, :right)
+      end
+    end
+
+    def no_visible_border?(cell, edge)
+      return true unless cell.borders.include?(edge)
+
+      width = edge == :left ? cell.border_left_width : cell.border_right_width
+      width.nil? || width <= 0
     end
 
     def apply_prawn_table_outer_borders(prawn_table, table_opts)
