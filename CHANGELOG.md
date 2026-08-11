@@ -1,5 +1,9 @@
 # Release notes
 
+## [0.2.7] - 2025-03-25
+
+- feat: if there are no table/cell borders on the left of the first and right of the last column, the cell paddings are removed (left for the first, right for the last)
+
 ## [0.2.6] - 2025-03-25
 
 - fix: No line break in table cells after ordered/undordered/task list
